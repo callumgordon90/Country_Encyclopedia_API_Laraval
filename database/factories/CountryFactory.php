@@ -19,12 +19,12 @@ class CountryFactory extends Factory
         return [
             'name' => $this->faker->country,
             'capital' => $this->faker->city,
-            'national_sport' => $this->faker->word,
-            'national_food' => $this->faker->word,
+            'national_sport' => $this->faker->randomElement(['Football', 'Basketball', 'Rugby', 'Baseball', 'Tennis', 'Boxing']),
+            'national_food' => $this->faker->randomElement(['Pasta', 'Fish and Chips', 'Curry', 'Noodles', 'Pizza', 'Soup']),
             'population' => $this->faker->randomNumber(7),
             'nuclear_power' => $this->faker->boolean,
-            'continent' => $this->faker->word,
-            'government_type' => $this->faker->word,
+            'continent' => $this->faker->randomElement(['Asia', 'Europe', 'Africa', 'North America', 'South America', 'Australia', 'Antarctica']),
+            'government_type' => $this->faker->randomElement(['Democracy', 'Monarchy', 'Republic', 'Oligarchy', 'Theocracy', 'Communism']),
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),
         ];
