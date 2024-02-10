@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +47,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         // Route::get('countries/search', [CountryController::class, 'search']); // Remove this line
     });
     */
+
+    //Register a user
+    Route::post('/users/register', [UserController::class, 'register']);
+
+    //Log in a user
+    Route::post('/users/login', [UserController::class, 'login']);
