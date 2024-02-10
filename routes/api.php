@@ -35,3 +35,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     
     //Delete a country:
     Route::delete('countries/{id}', [CountryController::class, 'delete']);
+
+    //search or filter countries by various criteria:
+    Route::get('country/search', [CountryController::class, 'search']);
+
+    /*
+    Route::get('search', function () {
+        //var_dump('Reached search-countries endpoint'); // Add this line to check if the route is reached
+        // Route::get('countries/search', [CountryController::class, 'search']); // Remove this line
+    });
+    */

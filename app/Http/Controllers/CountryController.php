@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
-
+//use Illuminate\Support\Facades\DB;
 
 class CountryController extends Controller
 {
@@ -82,4 +82,51 @@ class CountryController extends Controller
 
         return response()->json(null, 204);
     }
+
+    // Function to search countries based on criteria
+    public function search(Request $request)
+    {
+
+        //var_dump($request->all()); // Add this line to inspect the request parameters
+        // Initialize query builder
+
+        // Retrieve individual parameters
+        //$name = $request->input('name');
+        //var_dump('Name:', $name);
+
+
+        $query = Country::query();
+
+        // Apply filters based on request parameters
+        if ($request->has('name')) {
+            $query->where('name', $request->input('name'));
+        }
+        if ($request->has('capital')) {
+            $query->where('capital', $request->input('capital'));
+        }
+        if ($request->has('national_sport')) {
+            $query->where('national_sport', $request->input('national_sport'));
+        }
+        if ($request->has('national_food')) {
+            $query->where('national_food', $request->input('national_food'));
+        }
+        if ($request->has('population')) {
+            $query->where('population', $request->input('population'));
+        }
+        if ($request->has('nuclear_power')) {
+            $query->where('nuclear_power', $request->input('nuclear_power'));
+        }
+        if ($request->has('continent')) {
+            $query->where('continent', $request->input('continent'));
+        }
+        if ($request->has('government_type')) {
+            $query->where('government_type', $request->input('government_type'));
+        }
+
+        // Execute the query
+        $countries = $query->get();
+
+        return response()->json($countries);
+    }
+
 }
