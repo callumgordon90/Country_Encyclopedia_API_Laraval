@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller
 {
     public function register(Request $request)
@@ -34,12 +33,21 @@ class UserController extends Controller
     {
         // Validate the incoming request data
         $credentials = $request->only('email', 'password');
+
+        // Attempt to authenticate the user
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('authToken')->accessToken;
+            // Authentication successful, generate a token
+            $token = $this->generateToken(Auth::user());
             return response()->json(['token' => $token], 200);
         } else {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            // Authentication failed
+            return response()->json(['error' => 'Invalid credentials'], 401);
         }
+    }
+
+    // Helper function to generate token
+    private function generateToken($user)
+    {
+        return $user->createToken('authToken')->plainTextToken;
     }
 }
