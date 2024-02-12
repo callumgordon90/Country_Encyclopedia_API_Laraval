@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -53,3 +54,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     //Log in a user
     Route::post('/users/login', [UserController::class, 'login']);
+
+    //Reset a password for a user
+    Route::post('/auth/create-password-reset-token', [AuthController::class, 'createPasswordResetToken']);
