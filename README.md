@@ -17,6 +17,8 @@ Once the server is running, you can make HTTP requests to the available endpoint
 
 ## Project Structure
 
+```
+
 The project follows a standard Laravel directory structure:
 
 laravel_project/
@@ -36,7 +38,7 @@ laravel_project/
 │ └── Providers/
 ├── ...
 └── ...
-
+```
 
 
 ## Available Endpoints
